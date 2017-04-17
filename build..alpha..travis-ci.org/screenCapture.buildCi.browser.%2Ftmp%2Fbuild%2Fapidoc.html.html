@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/cloudhead/vows"
-
-    >vows (v0.8.1)</a>
+    <a href="https://github.com/cloudhead/vows">vows (v0.8.1)</a>
 </h1>
-<h4>Asynchronous BDD & continuous integration for node.js</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<h4>Asynchronous BDD &amp; continuous integration for node.js</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.vows">module vows</a><ol>
 
@@ -590,7 +583,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">console.contextText = function (event) {
-    return &#x27;  &#x27; + event;
+    return '  ' + event;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -605,11 +598,11 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">console.error = function (obj) {
-    var string  = &#x27;✗ &#x27; + $(&#x27;Errored &#x27;).red + &#x27;» &#x27;;
-        string += $(obj.error).red.bold                         + &#x27;\n&#x27;;
-        string += (obj.context ? &#x27;    in &#x27; + $(obj.context).red + &#x27;\n&#x27;: &#x27;&#x27;);
-        string += &#x27;    in &#x27; + $(obj.suite.subject).red          + &#x27;\n&#x27;;
-        string += &#x27;    in &#x27; + $(obj.suite._filename).red;
+    var string  = 'âœ— ' + $('Errored ').red + 'Â» ';
+        string += $(obj.error).red.bold                         + '\n';
+        string += (obj.context ? '    in ' + $(obj.context).red + '\n': '');
+        string += '    in ' + $(obj.suite.subject).red          + '\n';
+        string += '    in ' + $(obj.suite._filename).red;
 
     return string;
 }</pre></li>
@@ -629,12 +622,12 @@
     args = Array.prototype.slice.call(arguments);
     if (!options.raw) {
         args = args.map(function (a) {
-            return a.replace(/`([^`]+)`/g,   function (_, capture) { return stylize(capture, &#x27;italic&#x27;) })
-                    .replace(/\*([^*]+)\*/g, function (_, capture) { return stylize(capture, &#x27;bold&#x27;) })
-                    .replace(/\n/g, function (_, capture) { return &#x27; \n  &#x27; } );
+            return a.replace(/`([^`]+)`/g,   function (_, capture) { return stylize(capture, 'italic') })
+                    .replace(/\*([^*]+)\*/g, function (_, capture) { return stylize(capture, 'bold') })
+                    .replace(/\n/g, function (_, capture) { return ' \n  ' } );
         });
     }
-    return options.stream.write(args.join(&#x27;\n&#x27;) + options.tail);
+    return options.stream.write(args.join('\n') + options.tail);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -651,18 +644,18 @@
     <li>description and source-code<pre class="apidocCodePre">console.puts = function (options) {
     var stylize = exports.stylize;
     options.stream || (options.stream = process.stdout);
-    options.tail = options.tail || &#x27;&#x27;;
+    options.tail = options.tail || '';
 
     return function (args) {
         args = Array.prototype.slice.call(arguments);
         if (!options.raw) {
             args = args.map(function (a) {
-                return a.replace(/`([^`]+)`/g,   function (_, capture) { return stylize(capture, &#x27;italic&#x27;) })
-                        .replace(/\*([^*]+)\*/g, function (_, capture) { return stylize(capture, &#x27;bold&#x27;) })
-                        .replace(/\n/g, function (_, capture) { return &#x27; \n  &#x27; } );
+                return a.replace(/`([^`]+)`/g,   function (_, capture) { return stylize(capture, 'italic') })
+                        .replace(/\*([^*]+)\*/g, function (_, capture) { return stylize(capture, 'bold') })
+                        .replace(/\n/g, function (_, capture) { return ' \n  ' } );
             });
         }
-        return options.stream.write(args.join(&#x27;\n&#x27;) + options.tail);
+        return options.stream.write(args.join('\n') + options.tail);
     };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -678,38 +671,38 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">console.result = function (event) {
-    var result = [], buffer = [], time = &#x27;&#x27;, header;
+    var result = [], buffer = [], time = '', header;
     var complete = event.honored + event.pending + event.errored + event.broken;
-    var status = (event.errored &#x26;&#x26; &#x27;errored&#x27;) || (event.broken &#x26;&#x26; &#x27;broken&#x27;) ||
-                 (event.honored &#x26;&#x26; &#x27;honored&#x27;) || (event.pending &#x26;&#x26; &#x27;pending&#x27;);
+    var status = (event.errored &amp;&amp; 'errored') || (event.broken &amp;&amp; 'broken') ||
+                 (event.honored &amp;&amp; 'honored') || (event.pending &amp;&amp; 'pending');
 
     if (event.total === 0) {
-        return [$(&#x22;Could not find any tests to run.&#x22;).bold.red];
+        return [$("Could not find any tests to run.").bold.red];
     }
 
-    event.honored &#x26;&#x26; result.push($(event.honored).bold + &#x22; honored&#x22;);
-    event.broken  &#x26;&#x26; result.push($(event.broken).bold  + &#x22; broken&#x22;);
-    event.errored &#x26;&#x26; result.push($(event.errored).bold + &#x22; errored&#x22;);
-    event.pending &#x26;&#x26; result.push($(event.pending).bold + &#x22; pending&#x22;);
+    event.honored &amp;&amp; result.push($(event.honored).bold + " honored");
+    event.broken  &amp;&amp; result.push($(event.broken).bold  + " broken");
+    event.errored &amp;&amp; result.push($(event.errored).bold + " errored");
+    event.pending &amp;&amp; result.push($(event.pending).bold + " pending");
 
-    if (complete &#x3c; event.total) {
-        result.push($(event.total - complete).bold + &#x22; dropped&#x22;);
+    if (complete &lt; event.total) {
+        result.push($(event.total - complete).bold + " dropped");
     }
 
-    result = result.join(&#x27; ∙ &#x27;);
+    result = result.join(' âˆ™ ');
 
     header = {
-        honored: &#x27;✓ &#x27; + $(&#x27;OK&#x27;).bold.green,
-        broken:  &#x27;✗ &#x27; + $(&#x27;Broken&#x27;).bold.yellow,
-        errored: &#x27;✗ &#x27; + $(&#x27;Errored&#x27;).bold.red,
-        pending: &#x27;- &#x27; + $(&#x27;Pending&#x27;).bold.cyan
-    }[status] + &#x27; » &#x27;;
+        honored: 'âœ“ ' + $('OK').bold.green,
+        broken:  'âœ— ' + $('Broken').bold.yellow,
+        errored: 'âœ— ' + $('Errored').bold.red,
+        pending: '- ' + $('Pending').bold.cyan
+    }[status] + ' Â» ';
 
-    if (typeof(event.time) === &#x27;number&#x27;) {
-        time = &#x27; (&#x27; + event.time.toFixed(3) + &#x27;s)&#x27;;
-        time = this.stylize(time, &#x27;grey&#x27;);
+    if (typeof(event.time) === 'number') {
+        time = ' (' + event.time.toFixed(3) + 's)';
+        time = this.stylize(time, 'grey');
     }
-    buffer.push(header + result + time + &#x27;\n&#x27;);
+    buffer.push(header + result + time + '\n');
 
     return buffer;
 }</pre></li>
@@ -731,18 +724,18 @@
     }
 
     var styles = {
-        &#x27;bold&#x27;      : [1,  22],
-        &#x27;italic&#x27;    : [3,  23],
-        &#x27;underline&#x27; : [4,  24],
-        &#x27;cyan&#x27;      : [96, 39],
-        &#x27;yellow&#x27;    : [33, 39],
-        &#x27;green&#x27;     : [32, 39],
-        &#x27;red&#x27;       : [31, 39],
-        &#x27;grey&#x27;      : [90, 39],
-        &#x27;green-hi&#x27;  : [92, 32],
+        'bold'      : [1,  22],
+        'italic'    : [3,  23],
+        'underline' : [4,  24],
+        'cyan'      : [96, 39],
+        'yellow'    : [33, 39],
+        'green'     : [32, 39],
+        'red'       : [31, 39],
+        'grey'      : [90, 39],
+        'green-hi'  : [92, 32],
     };
-    return &#x27;\033[&#x27; + styles[style][0] + &#x27;m&#x27; + str +
-           &#x27;\033[&#x27; + styles[style][1] + &#x27;m&#x27;;
+    return '\033[' + styles[style][0] + 'm' + str +
+           '\033[' + styles[style][1] + 'm';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -759,29 +752,29 @@
     <li>description and source-code<pre class="apidocCodePre">console.vowText = function (event) {
     var buffer = [];
 
-    buffer.push(&#x27;   &#x27; + {
-        honored: &#x27; ✓ &#x27;,
-        broken:  &#x27; ✗ &#x27;,
-        errored: &#x27; ✗ &#x27;,
-        pending: &#x27; - &#x27;
+    buffer.push('   ' + {
+        honored: ' âœ“ ',
+        broken:  ' âœ— ',
+        errored: ' âœ— ',
+        pending: ' - '
     }[event.status] + this.stylize(event.title, ({
-        honored: &#x27;green&#x27;,
-        broken:  &#x27;yellow&#x27;,
-        errored: &#x27;red&#x27;,
-        pending: &#x27;cyan&#x27;
+        honored: 'green',
+        broken:  'yellow',
+        errored: 'red',
+        pending: 'cyan'
     })[event.status]));
 
-    if (event.status === &#x27;broken&#x27;) {
-        buffer.push(&#x27;      » &#x27; + event.exception);
-    } else if (event.status === &#x27;errored&#x27;) {
-        if (event.exception.type === &#x27;emitter&#x27;) {
-            buffer.push(&#x27;      » &#x27; + this.stylize(&#x22;An unexpected error was caught: &#x22; +
-                           this.stylize(event.exception.error, &#x27;bold&#x27;), &#x27;red&#x27;));
+    if (event.status === 'broken') {
+        buffer.push('      Â» ' + event.exception);
+    } else if (event.status === 'errored') {
+        if (event.exception.type === 'emitter') {
+            buffer.push('      Â» ' + this.stylize("An unexpected error was caught: " +
+                           this.stylize(event.exception.error, 'bold'), 'red'));
         } else {
-            buffer.push(&#x27;    &#x27; + this.stylize(event.exception, &#x27;red&#x27;));
+            buffer.push('    ' + this.stylize(event.exception, 'red'));
         }
     }
-    return buffer.join(&#x27;\n&#x27;);
+    return buffer.join('\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -799,7 +792,7 @@
     var suite = new(Suite)(subject);
 
     this.options.Emitter.prototype.addVow = addVow;
-    // just in case someone emit&#x27;s before I get to it
+    // just in case someone emit's before I get to it
     this.options.Emitter.prototype.emit = function (event) {
         this._vowsEmitedEvents = this._vowsEmitedEvents || {};
         this._vowsEmitedEventsOrder = this._vowsEmitedEventsOrder || [];
@@ -819,10 +812,10 @@
     this.suites.push(suite);
 
     //
-    // Add any additional arguments as batches if they&#x27;re present
+    // Add any additional arguments as batches if they're present
     //
-    if (arguments.length &#x3e; 1) {
-        for (var i = 1, l = arguments.length; i &#x3c; l; ++i) {
+    if (arguments.length &gt; 1) {
+        for (var i = 1, l = arguments.length; i &lt; l; ++i) {
             suite.addBatch(arguments[i]);
         }
     }
@@ -834,15 +827,15 @@ synopsis
 --------
 
 ```js
-var vows = require(&#x27;vows&#x27;),
-assert = require(&#x27;assert&#x27;);
+var vows = require('vows'),
+assert = require('assert');
 
-vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27;).addBatch({
-&#x27;An instance of DeepThought&#x27;: {
+vows.<span class="apidocCodeKeywordSpan">describe</span>('Deep Thought').addBatch({
+'An instance of DeepThought': {
     topic: new DeepThought,
 
-    &#x27;should know the answer to the ultimate question of life&#x27;: function (deepThought) {
-        assert.equal (deepThought.question(&#x27;what is the answer to the universe?&#x27;), 42);
+    'should know the answer to the ultimate question of life': function (deepThought) {
+        assert.equal (deepThought.question('what is the answer to the universe?'), 42);
     }
 }
 ...</pre></li>
@@ -862,7 +855,7 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
       return eyes(val);
     }
 
-    return &#x27;\033[1m&#x27; + eyes(val) + &#x27;\033[22m&#x27;;
+    return '\033[1m' + eyes(val) + '\033[22m';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -887,8 +880,8 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
                     args.push(function (err /* [, data] */) {
                         var args = Array.prototype.slice.call(arguments, 1);
 
-                        if (err) { ee.emit.apply(ee, [&#x27;error&#x27;, err].concat(args)) }
-                        else     { ee.emit.apply(ee, [&#x27;success&#x27;].concat(args)) }
+                        if (err) { ee.emit.apply(ee, ['error', err].concat(args)) }
+                        else     { ee.emit.apply(ee, ['success'].concat(args)) }
                     });
                     fun.apply(obj, args);
 
@@ -930,43 +923,43 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     var event = data[1];
 
     switch (data[0]) {
-        case &#x27;subject&#x27;:
-            // messages.push(stylize(event, &#x27;underline&#x27;) + &#x27;\n&#x27;);
+        case 'subject':
+            // messages.push(stylize(event, 'underline') + '\n');
             break;
-        case &#x27;context&#x27;:
+        case 'context':
             break;
-        case &#x27;vow&#x27;:
-            if (event.status === &#x27;honored&#x27;) {
-                puts(stylize(&#x27;·&#x27;, &#x27;green&#x27;));
-            } else if (event.status === &#x27;pending&#x27;) {
-                puts(stylize(&#x27;-&#x27;, &#x27;cyan&#x27;));
+        case 'vow':
+            if (event.status === 'honored') {
+                puts(stylize('Â·', 'green'));
+            } else if (event.status === 'pending') {
+                puts(stylize('-', 'cyan'));
             } else {
                 if (lastContext !== event.context) {
                     lastContext = event.context;
-                    messages.push(&#x27;  &#x27; + event.context);
+                    messages.push('  ' + event.context);
                 }
-                if (event.status === &#x27;broken&#x27;) {
-                    puts(stylize(&#x27;✗&#x27;, &#x27;yellow&#x27;));
+                if (event.status === 'broken') {
+                    puts(stylize('âœ—', 'yellow'));
                     messages.push(console.vowText(event));
-                } else if (event.status === &#x27;errored&#x27;) {
-                    puts(stylize(&#x27;✗&#x27;, &#x27;red&#x27;));
+                } else if (event.status === 'errored') {
+                    puts(stylize('âœ—', 'red'));
                     messages.push(console.vowText(event));
                 }
-                messages.push(&#x27;&#x27;);
+                messages.push('');
             }
             break;
-        case &#x27;end&#x27;:
-            puts(&#x27; &#x27;);
+        case 'end':
+            puts(' ');
             break;
-        case &#x27;finish&#x27;:
+        case 'finish':
             if (messages.length) {
-                puts(&#x27;\n\n&#x27; + messages.join(&#x27;\n&#x27;));
+                puts('\n\n' + messages.join('\n'));
             } else {
-                puts(&#x27;&#x27;);
+                puts('');
             }
-            puts(console.result(event).join(&#x27;\n&#x27;));
+            puts(console.result(event).join('\n'));
             break;
-        case &#x27;error&#x27;:
+        case 'error':
             puts(console.error(event));
             break;
     }
@@ -1017,15 +1010,15 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     <li>description and source-code<pre class="apidocCodePre">tryEnd = function (batch) {
     var result, style, time;
 
-    if (batch.honored + batch.broken + batch.errored + batch.pending === batch.total &#x26;&#x26;
+    if (batch.honored + batch.broken + batch.errored + batch.pending === batch.total &amp;&amp;
         batch.remaining === 0) {
 
         Object.keys(batch).forEach(function (k) {
-            (k in batch.suite.results) &#x26;&#x26; (batch.suite.results[k] += batch[k]);
+            (k in batch.suite.results) &amp;&amp; (batch.suite.results[k] += batch[k]);
         });
 
         if (batch.teardowns) {
-            for (var i = batch.teardowns.length - 1, ctx; i &#x3e;= 0; i--) {
+            for (var i = batch.teardowns.length - 1, ctx; i &gt;= 0; i--) {
                 runTeardown(batch.teardowns[i]);
             }
 
@@ -1035,7 +1028,7 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
         function runTeardown(teardown) {
             var env = Object.create(teardown.env);
 
-            Object.defineProperty(env, &#x22;callback&#x22;, {
+            Object.defineProperty(env, "callback", {
                 get: function () {
                     teardown.awaitingCallback = true;
 
@@ -1060,9 +1053,9 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
         }
 
         function finish() {
-            batch.status = &#x27;end&#x27;;
-            batch.suite.report([&#x27;end&#x27;]);
-            batch.emitter.emit(&#x27;end&#x27;, batch.honored, batch.broken, batch.errored, batch.pending);
+            batch.status = 'end';
+            batch.suite.report(['end']);
+            batch.emitter.emit('end', batch.honored, batch.broken, batch.errored, batch.pending);
         }
     }
 }</pre></li>
@@ -1094,7 +1087,7 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">contextText = function (event) {
-    return &#x27;  &#x27; + event;
+    return '  ' + event;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1109,11 +1102,11 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">error = function (obj) {
-    var string  = &#x27;✗ &#x27; + $(&#x27;Errored &#x27;).red + &#x27;» &#x27;;
-        string += $(obj.error).red.bold                         + &#x27;\n&#x27;;
-        string += (obj.context ? &#x27;    in &#x27; + $(obj.context).red + &#x27;\n&#x27;: &#x27;&#x27;);
-        string += &#x27;    in &#x27; + $(obj.suite.subject).red          + &#x27;\n&#x27;;
-        string += &#x27;    in &#x27; + $(obj.suite._filename).red;
+    var string  = 'âœ— ' + $('Errored ').red + 'Â» ';
+        string += $(obj.error).red.bold                         + '\n';
+        string += (obj.context ? '    in ' + $(obj.context).red + '\n': '');
+        string += '    in ' + $(obj.suite.subject).red          + '\n';
+        string += '    in ' + $(obj.suite._filename).red;
 
     return string;
 }</pre></li>
@@ -1134,7 +1127,7 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
       return eyes(val);
     }
 
-    return &#x27;\033[1m&#x27; + eyes(val) + &#x27;\033[22m&#x27;;
+    return '\033[1m' + eyes(val) + '\033[22m';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1152,12 +1145,12 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     args = Array.prototype.slice.call(arguments);
     if (!options.raw) {
         args = args.map(function (a) {
-            return a.replace(/`([^`]+)`/g,   function (_, capture) { return stylize(capture, &#x27;italic&#x27;) })
-                    .replace(/\*([^*]+)\*/g, function (_, capture) { return stylize(capture, &#x27;bold&#x27;) })
-                    .replace(/\n/g, function (_, capture) { return &#x27; \n  &#x27; } );
+            return a.replace(/`([^`]+)`/g,   function (_, capture) { return stylize(capture, 'italic') })
+                    .replace(/\*([^*]+)\*/g, function (_, capture) { return stylize(capture, 'bold') })
+                    .replace(/\n/g, function (_, capture) { return ' \n  ' } );
         });
     }
-    return options.stream.write(args.join(&#x27;\n&#x27;) + options.tail);
+    return options.stream.write(args.join('\n') + options.tail);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1174,18 +1167,18 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     <li>description and source-code<pre class="apidocCodePre">puts = function (options) {
     var stylize = exports.stylize;
     options.stream || (options.stream = process.stdout);
-    options.tail = options.tail || &#x27;&#x27;;
+    options.tail = options.tail || '';
 
     return function (args) {
         args = Array.prototype.slice.call(arguments);
         if (!options.raw) {
             args = args.map(function (a) {
-                return a.replace(/`([^`]+)`/g,   function (_, capture) { return stylize(capture, &#x27;italic&#x27;) })
-                        .replace(/\*([^*]+)\*/g, function (_, capture) { return stylize(capture, &#x27;bold&#x27;) })
-                        .replace(/\n/g, function (_, capture) { return &#x27; \n  &#x27; } );
+                return a.replace(/`([^`]+)`/g,   function (_, capture) { return stylize(capture, 'italic') })
+                        .replace(/\*([^*]+)\*/g, function (_, capture) { return stylize(capture, 'bold') })
+                        .replace(/\n/g, function (_, capture) { return ' \n  ' } );
             });
         }
-        return options.stream.write(args.join(&#x27;\n&#x27;) + options.tail);
+        return options.stream.write(args.join('\n') + options.tail);
     };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -1201,38 +1194,38 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">result = function (event) {
-    var result = [], buffer = [], time = &#x27;&#x27;, header;
+    var result = [], buffer = [], time = '', header;
     var complete = event.honored + event.pending + event.errored + event.broken;
-    var status = (event.errored &#x26;&#x26; &#x27;errored&#x27;) || (event.broken &#x26;&#x26; &#x27;broken&#x27;) ||
-                 (event.honored &#x26;&#x26; &#x27;honored&#x27;) || (event.pending &#x26;&#x26; &#x27;pending&#x27;);
+    var status = (event.errored &amp;&amp; 'errored') || (event.broken &amp;&amp; 'broken') ||
+                 (event.honored &amp;&amp; 'honored') || (event.pending &amp;&amp; 'pending');
 
     if (event.total === 0) {
-        return [$(&#x22;Could not find any tests to run.&#x22;).bold.red];
+        return [$("Could not find any tests to run.").bold.red];
     }
 
-    event.honored &#x26;&#x26; result.push($(event.honored).bold + &#x22; honored&#x22;);
-    event.broken  &#x26;&#x26; result.push($(event.broken).bold  + &#x22; broken&#x22;);
-    event.errored &#x26;&#x26; result.push($(event.errored).bold + &#x22; errored&#x22;);
-    event.pending &#x26;&#x26; result.push($(event.pending).bold + &#x22; pending&#x22;);
+    event.honored &amp;&amp; result.push($(event.honored).bold + " honored");
+    event.broken  &amp;&amp; result.push($(event.broken).bold  + " broken");
+    event.errored &amp;&amp; result.push($(event.errored).bold + " errored");
+    event.pending &amp;&amp; result.push($(event.pending).bold + " pending");
 
-    if (complete &#x3c; event.total) {
-        result.push($(event.total - complete).bold + &#x22; dropped&#x22;);
+    if (complete &lt; event.total) {
+        result.push($(event.total - complete).bold + " dropped");
     }
 
-    result = result.join(&#x27; ∙ &#x27;);
+    result = result.join(' âˆ™ ');
 
     header = {
-        honored: &#x27;✓ &#x27; + $(&#x27;OK&#x27;).bold.green,
-        broken:  &#x27;✗ &#x27; + $(&#x27;Broken&#x27;).bold.yellow,
-        errored: &#x27;✗ &#x27; + $(&#x27;Errored&#x27;).bold.red,
-        pending: &#x27;- &#x27; + $(&#x27;Pending&#x27;).bold.cyan
-    }[status] + &#x27; » &#x27;;
+        honored: 'âœ“ ' + $('OK').bold.green,
+        broken:  'âœ— ' + $('Broken').bold.yellow,
+        errored: 'âœ— ' + $('Errored').bold.red,
+        pending: '- ' + $('Pending').bold.cyan
+    }[status] + ' Â» ';
 
-    if (typeof(event.time) === &#x27;number&#x27;) {
-        time = &#x27; (&#x27; + event.time.toFixed(3) + &#x27;s)&#x27;;
-        time = this.stylize(time, &#x27;grey&#x27;);
+    if (typeof(event.time) === 'number') {
+        time = ' (' + event.time.toFixed(3) + 's)';
+        time = this.stylize(time, 'grey');
     }
-    buffer.push(header + result + time + &#x27;\n&#x27;);
+    buffer.push(header + result + time + '\n');
 
     return buffer;
 }</pre></li>
@@ -1254,18 +1247,18 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     }
 
     var styles = {
-        &#x27;bold&#x27;      : [1,  22],
-        &#x27;italic&#x27;    : [3,  23],
-        &#x27;underline&#x27; : [4,  24],
-        &#x27;cyan&#x27;      : [96, 39],
-        &#x27;yellow&#x27;    : [33, 39],
-        &#x27;green&#x27;     : [32, 39],
-        &#x27;red&#x27;       : [31, 39],
-        &#x27;grey&#x27;      : [90, 39],
-        &#x27;green-hi&#x27;  : [92, 32],
+        'bold'      : [1,  22],
+        'italic'    : [3,  23],
+        'underline' : [4,  24],
+        'cyan'      : [96, 39],
+        'yellow'    : [33, 39],
+        'green'     : [32, 39],
+        'red'       : [31, 39],
+        'grey'      : [90, 39],
+        'green-hi'  : [92, 32],
     };
-    return &#x27;\033[&#x27; + styles[style][0] + &#x27;m&#x27; + str +
-           &#x27;\033[&#x27; + styles[style][1] + &#x27;m&#x27;;
+    return '\033[' + styles[style][0] + 'm' + str +
+           '\033[' + styles[style][1] + 'm';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1282,29 +1275,29 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     <li>description and source-code<pre class="apidocCodePre">vowText = function (event) {
     var buffer = [];
 
-    buffer.push(&#x27;   &#x27; + {
-        honored: &#x27; ✓ &#x27;,
-        broken:  &#x27; ✗ &#x27;,
-        errored: &#x27; ✗ &#x27;,
-        pending: &#x27; - &#x27;
+    buffer.push('   ' + {
+        honored: ' âœ“ ',
+        broken:  ' âœ— ',
+        errored: ' âœ— ',
+        pending: ' - '
     }[event.status] + this.stylize(event.title, ({
-        honored: &#x27;green&#x27;,
-        broken:  &#x27;yellow&#x27;,
-        errored: &#x27;red&#x27;,
-        pending: &#x27;cyan&#x27;
+        honored: 'green',
+        broken:  'yellow',
+        errored: 'red',
+        pending: 'cyan'
     })[event.status]));
 
-    if (event.status === &#x27;broken&#x27;) {
-        buffer.push(&#x27;      » &#x27; + event.exception);
-    } else if (event.status === &#x27;errored&#x27;) {
-        if (event.exception.type === &#x27;emitter&#x27;) {
-            buffer.push(&#x27;      » &#x27; + this.stylize(&#x22;An unexpected error was caught: &#x22; +
-                           this.stylize(event.exception.error, &#x27;bold&#x27;), &#x27;red&#x27;));
+    if (event.status === 'broken') {
+        buffer.push('      Â» ' + event.exception);
+    } else if (event.status === 'errored') {
+        if (event.exception.type === 'emitter') {
+            buffer.push('      Â» ' + this.stylize("An unexpected error was caught: " +
+                           this.stylize(event.exception.error, 'bold'), 'red'));
         } else {
-            buffer.push(&#x27;    &#x27; + this.stylize(event.exception, &#x27;red&#x27;));
+            buffer.push('    ' + this.stylize(event.exception, 'red'));
         }
     }
-    return buffer.join(&#x27;\n&#x27;);
+    return buffer.join('\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1324,7 +1317,7 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">contextText = function (event) {
-    return &#x27;  &#x27; + event;
+    return '  ' + event;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1344,11 +1337,11 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">error = function (obj) {
-    var string  = &#x27;✗ &#x27; + $(&#x27;Errored &#x27;).red + &#x27;» &#x27;;
-        string += $(obj.error).red.bold                         + &#x27;\n&#x27;;
-        string += (obj.context ? &#x27;    in &#x27; + $(obj.context).red + &#x27;\n&#x27;: &#x27;&#x27;);
-        string += &#x27;    in &#x27; + $(obj.suite.subject).red          + &#x27;\n&#x27;;
-        string += &#x27;    in &#x27; + $(obj.suite._filename).red;
+    var string  = 'âœ— ' + $('Errored ').red + 'Â» ';
+        string += $(obj.error).red.bold                         + '\n';
+        string += (obj.context ? '    in ' + $(obj.context).red + '\n': '');
+        string += '    in ' + $(obj.suite.subject).red          + '\n';
+        string += '    in ' + $(obj.suite._filename).red;
 
     return string;
 }</pre></li>
@@ -1373,12 +1366,12 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     args = Array.prototype.slice.call(arguments);
     if (!options.raw) {
         args = args.map(function (a) {
-            return a.replace(/`([^`]+)`/g,   function (_, capture) { return stylize(capture, &#x27;italic&#x27;) })
-                    .replace(/\*([^*]+)\*/g, function (_, capture) { return stylize(capture, &#x27;bold&#x27;) })
-                    .replace(/\n/g, function (_, capture) { return &#x27; \n  &#x27; } );
+            return a.replace(/`([^`]+)`/g,   function (_, capture) { return stylize(capture, 'italic') })
+                    .replace(/\*([^*]+)\*/g, function (_, capture) { return stylize(capture, 'bold') })
+                    .replace(/\n/g, function (_, capture) { return ' \n  ' } );
         });
     }
-    return options.stream.write(args.join(&#x27;\n&#x27;) + options.tail);
+    return options.stream.write(args.join('\n') + options.tail);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1400,18 +1393,18 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     <li>description and source-code<pre class="apidocCodePre">puts = function (options) {
     var stylize = exports.stylize;
     options.stream || (options.stream = process.stdout);
-    options.tail = options.tail || &#x27;&#x27;;
+    options.tail = options.tail || '';
 
     return function (args) {
         args = Array.prototype.slice.call(arguments);
         if (!options.raw) {
             args = args.map(function (a) {
-                return a.replace(/`([^`]+)`/g,   function (_, capture) { return stylize(capture, &#x27;italic&#x27;) })
-                        .replace(/\*([^*]+)\*/g, function (_, capture) { return stylize(capture, &#x27;bold&#x27;) })
-                        .replace(/\n/g, function (_, capture) { return &#x27; \n  &#x27; } );
+                return a.replace(/`([^`]+)`/g,   function (_, capture) { return stylize(capture, 'italic') })
+                        .replace(/\*([^*]+)\*/g, function (_, capture) { return stylize(capture, 'bold') })
+                        .replace(/\n/g, function (_, capture) { return ' \n  ' } );
             });
         }
-        return options.stream.write(args.join(&#x27;\n&#x27;) + options.tail);
+        return options.stream.write(args.join('\n') + options.tail);
     };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -1432,38 +1425,38 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">result = function (event) {
-    var result = [], buffer = [], time = &#x27;&#x27;, header;
+    var result = [], buffer = [], time = '', header;
     var complete = event.honored + event.pending + event.errored + event.broken;
-    var status = (event.errored &#x26;&#x26; &#x27;errored&#x27;) || (event.broken &#x26;&#x26; &#x27;broken&#x27;) ||
-                 (event.honored &#x26;&#x26; &#x27;honored&#x27;) || (event.pending &#x26;&#x26; &#x27;pending&#x27;);
+    var status = (event.errored &amp;&amp; 'errored') || (event.broken &amp;&amp; 'broken') ||
+                 (event.honored &amp;&amp; 'honored') || (event.pending &amp;&amp; 'pending');
 
     if (event.total === 0) {
-        return [$(&#x22;Could not find any tests to run.&#x22;).bold.red];
+        return [$("Could not find any tests to run.").bold.red];
     }
 
-    event.honored &#x26;&#x26; result.push($(event.honored).bold + &#x22; honored&#x22;);
-    event.broken  &#x26;&#x26; result.push($(event.broken).bold  + &#x22; broken&#x22;);
-    event.errored &#x26;&#x26; result.push($(event.errored).bold + &#x22; errored&#x22;);
-    event.pending &#x26;&#x26; result.push($(event.pending).bold + &#x22; pending&#x22;);
+    event.honored &amp;&amp; result.push($(event.honored).bold + " honored");
+    event.broken  &amp;&amp; result.push($(event.broken).bold  + " broken");
+    event.errored &amp;&amp; result.push($(event.errored).bold + " errored");
+    event.pending &amp;&amp; result.push($(event.pending).bold + " pending");
 
-    if (complete &#x3c; event.total) {
-        result.push($(event.total - complete).bold + &#x22; dropped&#x22;);
+    if (complete &lt; event.total) {
+        result.push($(event.total - complete).bold + " dropped");
     }
 
-    result = result.join(&#x27; ∙ &#x27;);
+    result = result.join(' âˆ™ ');
 
     header = {
-        honored: &#x27;✓ &#x27; + $(&#x27;OK&#x27;).bold.green,
-        broken:  &#x27;✗ &#x27; + $(&#x27;Broken&#x27;).bold.yellow,
-        errored: &#x27;✗ &#x27; + $(&#x27;Errored&#x27;).bold.red,
-        pending: &#x27;- &#x27; + $(&#x27;Pending&#x27;).bold.cyan
-    }[status] + &#x27; » &#x27;;
+        honored: 'âœ“ ' + $('OK').bold.green,
+        broken:  'âœ— ' + $('Broken').bold.yellow,
+        errored: 'âœ— ' + $('Errored').bold.red,
+        pending: '- ' + $('Pending').bold.cyan
+    }[status] + ' Â» ';
 
-    if (typeof(event.time) === &#x27;number&#x27;) {
-        time = &#x27; (&#x27; + event.time.toFixed(3) + &#x27;s)&#x27;;
-        time = this.stylize(time, &#x27;grey&#x27;);
+    if (typeof(event.time) === 'number') {
+        time = ' (' + event.time.toFixed(3) + 's)';
+        time = this.stylize(time, 'grey');
     }
-    buffer.push(header + result + time + &#x27;\n&#x27;);
+    buffer.push(header + result + time + '\n');
 
     return buffer;
 }</pre></li>
@@ -1490,18 +1483,18 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     }
 
     var styles = {
-        &#x27;bold&#x27;      : [1,  22],
-        &#x27;italic&#x27;    : [3,  23],
-        &#x27;underline&#x27; : [4,  24],
-        &#x27;cyan&#x27;      : [96, 39],
-        &#x27;yellow&#x27;    : [33, 39],
-        &#x27;green&#x27;     : [32, 39],
-        &#x27;red&#x27;       : [31, 39],
-        &#x27;grey&#x27;      : [90, 39],
-        &#x27;green-hi&#x27;  : [92, 32],
+        'bold'      : [1,  22],
+        'italic'    : [3,  23],
+        'underline' : [4,  24],
+        'cyan'      : [96, 39],
+        'yellow'    : [33, 39],
+        'green'     : [32, 39],
+        'red'       : [31, 39],
+        'grey'      : [90, 39],
+        'green-hi'  : [92, 32],
     };
-    return &#x27;\033[&#x27; + styles[style][0] + &#x27;m&#x27; + str +
-           &#x27;\033[&#x27; + styles[style][1] + &#x27;m&#x27;;
+    return '\033[' + styles[style][0] + 'm' + str +
+           '\033[' + styles[style][1] + 'm';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1523,29 +1516,29 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     <li>description and source-code<pre class="apidocCodePre">vowText = function (event) {
     var buffer = [];
 
-    buffer.push(&#x27;   &#x27; + {
-        honored: &#x27; ✓ &#x27;,
-        broken:  &#x27; ✗ &#x27;,
-        errored: &#x27; ✗ &#x27;,
-        pending: &#x27; - &#x27;
+    buffer.push('   ' + {
+        honored: ' âœ“ ',
+        broken:  ' âœ— ',
+        errored: ' âœ— ',
+        pending: ' - '
     }[event.status] + this.stylize(event.title, ({
-        honored: &#x27;green&#x27;,
-        broken:  &#x27;yellow&#x27;,
-        errored: &#x27;red&#x27;,
-        pending: &#x27;cyan&#x27;
+        honored: 'green',
+        broken:  'yellow',
+        errored: 'red',
+        pending: 'cyan'
     })[event.status]));
 
-    if (event.status === &#x27;broken&#x27;) {
-        buffer.push(&#x27;      » &#x27; + event.exception);
-    } else if (event.status === &#x27;errored&#x27;) {
-        if (event.exception.type === &#x27;emitter&#x27;) {
-            buffer.push(&#x27;      » &#x27; + this.stylize(&#x22;An unexpected error was caught: &#x22; +
-                           this.stylize(event.exception.error, &#x27;bold&#x27;), &#x27;red&#x27;));
+    if (event.status === 'broken') {
+        buffer.push('      Â» ' + event.exception);
+    } else if (event.status === 'errored') {
+        if (event.exception.type === 'emitter') {
+            buffer.push('      Â» ' + this.stylize("An unexpected error was caught: " +
+                           this.stylize(event.exception.error, 'bold'), 'red'));
         } else {
-            buffer.push(&#x27;    &#x27; + this.stylize(event.exception, &#x27;red&#x27;));
+            buffer.push('    ' + this.stylize(event.exception, 'red'));
         }
     }
-    return buffer.join(&#x27;\n&#x27;);
+    return buffer.join('\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1568,7 +1561,7 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     var suite = new(Suite)(subject);
 
     this.options.Emitter.prototype.addVow = addVow;
-    // just in case someone emit&#x27;s before I get to it
+    // just in case someone emit's before I get to it
     this.options.Emitter.prototype.emit = function (event) {
         this._vowsEmitedEvents = this._vowsEmitedEvents || {};
         this._vowsEmitedEventsOrder = this._vowsEmitedEventsOrder || [];
@@ -1588,10 +1581,10 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     this.suites.push(suite);
 
     //
-    // Add any additional arguments as batches if they&#x27;re present
+    // Add any additional arguments as batches if they're present
     //
-    if (arguments.length &#x3e; 1) {
-        for (var i = 1, l = arguments.length; i &#x3c; l; ++i) {
+    if (arguments.length &gt; 1) {
+        for (var i = 1, l = arguments.length; i &lt; l; ++i) {
             suite.addBatch(arguments[i]);
         }
     }
@@ -1603,15 +1596,15 @@ synopsis
 --------
 
 ```js
-var vows = require(&#x27;vows&#x27;),
-assert = require(&#x27;assert&#x27;);
+var vows = require('vows'),
+assert = require('assert');
 
-vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27;).addBatch({
-&#x27;An instance of DeepThought&#x27;: {
+vows.<span class="apidocCodeKeywordSpan">describe</span>('Deep Thought').addBatch({
+'An instance of DeepThought': {
     topic: new DeepThought,
 
-    &#x27;should know the answer to the ultimate question of life&#x27;: function (deepThought) {
-        assert.equal (deepThought.question(&#x27;what is the answer to the universe?&#x27;), 42);
+    'should know the answer to the ultimate question of life': function (deepThought) {
+        assert.equal (deepThought.question('what is the answer to the universe?'), 42);
     }
 }
 ...</pre></li>
@@ -1636,7 +1629,7 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
       return eyes(val);
     }
 
-    return &#x27;\033[1m&#x27; + eyes(val) + &#x27;\033[22m&#x27;;
+    return '\033[1m' + eyes(val) + '\033[22m';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1692,8 +1685,8 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
                     args.push(function (err /* [, data] */) {
                         var args = Array.prototype.slice.call(arguments, 1);
 
-                        if (err) { ee.emit.apply(ee, [&#x27;error&#x27;, err].concat(args)) }
-                        else     { ee.emit.apply(ee, [&#x27;success&#x27;].concat(args)) }
+                        if (err) { ee.emit.apply(ee, ['error', err].concat(args)) }
+                        else     { ee.emit.apply(ee, ['success'].concat(args)) }
                     });
                     fun.apply(obj, args);
 
@@ -1740,43 +1733,43 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     var event = data[1];
 
     switch (data[0]) {
-        case &#x27;subject&#x27;:
-            // messages.push(stylize(event, &#x27;underline&#x27;) + &#x27;\n&#x27;);
+        case 'subject':
+            // messages.push(stylize(event, 'underline') + '\n');
             break;
-        case &#x27;context&#x27;:
+        case 'context':
             break;
-        case &#x27;vow&#x27;:
-            if (event.status === &#x27;honored&#x27;) {
-                puts(stylize(&#x27;·&#x27;, &#x27;green&#x27;));
-            } else if (event.status === &#x27;pending&#x27;) {
-                puts(stylize(&#x27;-&#x27;, &#x27;cyan&#x27;));
+        case 'vow':
+            if (event.status === 'honored') {
+                puts(stylize('Â·', 'green'));
+            } else if (event.status === 'pending') {
+                puts(stylize('-', 'cyan'));
             } else {
                 if (lastContext !== event.context) {
                     lastContext = event.context;
-                    messages.push(&#x27;  &#x27; + event.context);
+                    messages.push('  ' + event.context);
                 }
-                if (event.status === &#x27;broken&#x27;) {
-                    puts(stylize(&#x27;✗&#x27;, &#x27;yellow&#x27;));
+                if (event.status === 'broken') {
+                    puts(stylize('âœ—', 'yellow'));
                     messages.push(console.vowText(event));
-                } else if (event.status === &#x27;errored&#x27;) {
-                    puts(stylize(&#x27;✗&#x27;, &#x27;red&#x27;));
+                } else if (event.status === 'errored') {
+                    puts(stylize('âœ—', 'red'));
                     messages.push(console.vowText(event));
                 }
-                messages.push(&#x27;&#x27;);
+                messages.push('');
             }
             break;
-        case &#x27;end&#x27;:
-            puts(&#x27; &#x27;);
+        case 'end':
+            puts(' ');
             break;
-        case &#x27;finish&#x27;:
+        case 'finish':
             if (messages.length) {
-                puts(&#x27;\n\n&#x27; + messages.join(&#x27;\n&#x27;));
+                puts('\n\n' + messages.join('\n'));
             } else {
-                puts(&#x27;&#x27;);
+                puts('');
             }
-            puts(console.result(event).join(&#x27;\n&#x27;));
+            puts(console.result(event).join('\n'));
             break;
-        case &#x27;error&#x27;:
+        case 'error':
             puts(console.error(event));
             break;
     }
@@ -1855,43 +1848,43 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     var event = data[1];
 
     switch (data[0]) {
-        case &#x27;subject&#x27;:
-            // messages.push(stylize(event, &#x27;underline&#x27;) + &#x27;\n&#x27;);
+        case 'subject':
+            // messages.push(stylize(event, 'underline') + '\n');
             break;
-        case &#x27;context&#x27;:
+        case 'context':
             break;
-        case &#x27;vow&#x27;:
-            if (event.status === &#x27;honored&#x27;) {
-                puts(stylize(&#x27;·&#x27;, &#x27;green&#x27;));
-            } else if (event.status === &#x27;pending&#x27;) {
-                puts(stylize(&#x27;-&#x27;, &#x27;cyan&#x27;));
+        case 'vow':
+            if (event.status === 'honored') {
+                puts(stylize('Â·', 'green'));
+            } else if (event.status === 'pending') {
+                puts(stylize('-', 'cyan'));
             } else {
                 if (lastContext !== event.context) {
                     lastContext = event.context;
-                    messages.push(&#x27;  &#x27; + event.context);
+                    messages.push('  ' + event.context);
                 }
-                if (event.status === &#x27;broken&#x27;) {
-                    puts(stylize(&#x27;✗&#x27;, &#x27;yellow&#x27;));
+                if (event.status === 'broken') {
+                    puts(stylize('âœ—', 'yellow'));
                     messages.push(console.vowText(event));
-                } else if (event.status === &#x27;errored&#x27;) {
-                    puts(stylize(&#x27;✗&#x27;, &#x27;red&#x27;));
+                } else if (event.status === 'errored') {
+                    puts(stylize('âœ—', 'red'));
                     messages.push(console.vowText(event));
                 }
-                messages.push(&#x27;&#x27;);
+                messages.push('');
             }
             break;
-        case &#x27;end&#x27;:
-            puts(&#x27; &#x27;);
+        case 'end':
+            puts(' ');
             break;
-        case &#x27;finish&#x27;:
+        case 'finish':
             if (messages.length) {
-                puts(&#x27;\n\n&#x27; + messages.join(&#x27;\n&#x27;));
+                puts('\n\n' + messages.join('\n'));
             } else {
-                puts(&#x27;&#x27;);
+                puts('');
             }
-            puts(console.result(event).join(&#x27;\n&#x27;));
+            puts(console.result(event).join('\n'));
             break;
-        case &#x27;error&#x27;:
+        case 'error':
             puts(console.error(event));
             break;
     }
@@ -1957,15 +1950,15 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     <li>description and source-code<pre class="apidocCodePre">tryEnd = function (batch) {
     var result, style, time;
 
-    if (batch.honored + batch.broken + batch.errored + batch.pending === batch.total &#x26;&#x26;
+    if (batch.honored + batch.broken + batch.errored + batch.pending === batch.total &amp;&amp;
         batch.remaining === 0) {
 
         Object.keys(batch).forEach(function (k) {
-            (k in batch.suite.results) &#x26;&#x26; (batch.suite.results[k] += batch[k]);
+            (k in batch.suite.results) &amp;&amp; (batch.suite.results[k] += batch[k]);
         });
 
         if (batch.teardowns) {
-            for (var i = batch.teardowns.length - 1, ctx; i &#x3e;= 0; i--) {
+            for (var i = batch.teardowns.length - 1, ctx; i &gt;= 0; i--) {
                 runTeardown(batch.teardowns[i]);
             }
 
@@ -1975,7 +1968,7 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
         function runTeardown(teardown) {
             var env = Object.create(teardown.env);
 
-            Object.defineProperty(env, &#x22;callback&#x22;, {
+            Object.defineProperty(env, "callback", {
                 get: function () {
                     teardown.awaitingCallback = true;
 
@@ -2000,9 +1993,9 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
         }
 
         function finish() {
-            batch.status = &#x27;end&#x27;;
-            batch.suite.report([&#x27;end&#x27;]);
-            batch.emitter.emit(&#x27;end&#x27;, batch.honored, batch.broken, batch.errored, batch.pending);
+            batch.status = 'end';
+            batch.suite.report(['end']);
+            batch.emitter.emit('end', batch.honored, batch.broken, batch.errored, batch.pending);
         }
     }
 }</pre></li>
@@ -2018,3 +2011,4 @@ vows.<span class="apidocCodeKeywordSpan">describe</span>(&#x27;Deep Thought&#x27
     ]
 </div>
 </div>
+</body></html>
