@@ -1,4 +1,7 @@
-# api documentation for  [vows (v0.8.1)](https://github.com/cloudhead/vows)  [![npm package](https://img.shields.io/npm/v/npmdoc-vows.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-vows) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-vows.svg)](https://travis-ci.org/npmdoc/node-npmdoc-vows)
+# npmdoc-vows
+
+#### basic api documentation for  [vows (v0.8.1)](https://github.com/cloudhead/vows)  [![npm package](https://img.shields.io/npm/v/npmdoc-vows.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-vows) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-vows.svg)](https://travis-ci.org/npmdoc/node-npmdoc-vows)
+
 #### Asynchronous BDD & continuous integration for node.js
 
 [![NPM](https://nodei.co/npm/vows.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/vows)
